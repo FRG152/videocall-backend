@@ -65,7 +65,7 @@ io.on("connection", (socket) => {
     );
   });
 
-  socket.on("sendMessageToDoctor", ({ doctorId, message, patientId }) => {
+  socket.on("sendMessageToDoctor", ({ doctorId, message }) => {
     console.log(`Llamando al doctor ${doctorId}: ${message}`);
     io.to(doctorId).emit("message", message);
   });
