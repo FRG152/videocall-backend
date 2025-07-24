@@ -68,13 +68,11 @@ io.on("connection", (socket) => {
   socket.on("sendMessageToDoctor", ({ doctorId, message, patientId }) => {
     console.log(`Llamando al doctor ${doctorId}: ${message}`);
     io.to(doctorId).emit("message", message);
-    myPatientId = patientId;
   });
 
   socket.on("sendMessageToPatient", ({ doctorId, message, patientId }) => {
     console.log(`Llamando al paciente ${doctorId}: ${message}`);
     io.to(patientId).emit("message", message);
-    myPatientId = patientId;
   });
 
   socket.on("messageReceived", (id) => {
