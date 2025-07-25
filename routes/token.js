@@ -25,5 +25,19 @@ module.exports = (client) => {
       res.status(500).json({ error: "Error generando el token" });
     }
   });
+
+  router.post("/deleteUser", async (req, res) => {
+    const userId = req.body.userId;
+    if (!userId) {
+      return res.status(400).json({ error: "Falta el userId en el body" });
+    }
+    try {
+      await client.deleteUsers([userId]);
+      res.json({ success: true });
+    } catch (error) {
+      console.error("Error eliminando el usuario:", error);
+      res.status(500).json({ error: "Error eliminando el usuario" });
+    }
+  });
   return router;
 };
