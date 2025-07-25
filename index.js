@@ -65,12 +65,12 @@ io.on("connection", (socket) => {
     );
   });
 
-  socket.on("sendMessageToDoctor", ({ doctorId, message }) => {
-    console.log(`Llamando al doctor ${doctorId}: ${message}`);
+  socket.on("sendMessageToDoctor", ({ doctorId, message, patientId }) => {
+    console.log(`Llamando al doctor ${patientId}: ${message}`);
     io.to(doctorId).emit("message", message);
   });
 
-  socket.on("sendMessageToPatient", ({ doctorId, message, patientId }) => {
+  socket.on("sendMessageToPatient", ({ patientId, message, doctorId }) => {
     console.log(`Llamando al paciente ${doctorId}: ${message}`);
     io.to(patientId).emit("message", message);
   });
