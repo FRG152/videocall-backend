@@ -5,7 +5,7 @@ const { Server } = require("socket.io");
 const { StreamClient } = require("@stream-io/node-sdk");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {

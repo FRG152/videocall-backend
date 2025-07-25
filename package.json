@@ -7,7 +7,7 @@
     "socket.io": "^4.7.5"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node server"
   },
   "name": "videocall",
   "version": "1.0.0",
