@@ -26,7 +26,7 @@ app.use(express.json());
 const tokenRoutes = require("./routes/token");
 const socketHandler = require("./sockets");
 
-app.use("/generateToken", tokenRoutes(client));
+app.use("/token", tokenRoutes(client));
 app.use("/deleteUser", tokenRoutes(client));
 socketHandler(io);
 
