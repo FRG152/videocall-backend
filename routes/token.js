@@ -7,9 +7,6 @@ module.exports = (client) => {
     const userId = req.body.userId;
     const userRole = req.body.role;
 
-    console.log("userId", userId);
-    console.log("userRole", userRole);
-
     if (!userId) {
       return res.status(400).json({ error: "Falta el userId en el body" });
     }
@@ -28,8 +25,6 @@ module.exports = (client) => {
         name: name,
         image: "link/to/profile/image",
       };
-
-      console.log("Creating user with role:", streamRole);
 
       await client.upsertUsers([newUser]);
 
