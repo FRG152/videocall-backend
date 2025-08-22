@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const OpenAI = require("openai");
-const { playAudio } = require("openai/helpers/audio");
 
 const express = require("express");
 const router = express.Router();

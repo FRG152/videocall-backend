@@ -23,7 +23,7 @@ module.exports = (client) => {
         id: userId,
         role: streamRole,
         name: name,
-        image: "link/to/profile/image",
+        image: "",
       };
 
       await client.upsertUsers([newUser]);
