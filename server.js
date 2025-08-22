@@ -21,7 +21,6 @@ dotenv.config();
 const apiKey = `${process.env.STREAM_API_KEY}`;
 const secret = `${process.env.STREAM_API_SECRET}`;
 client = new StreamClient(apiKey, secret);
-
 app.use(helment());
 app.use(express.json());
 

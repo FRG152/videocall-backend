@@ -27,13 +27,24 @@ module.exports = (client) => {
       };
 
       await client.upsertUsers([newUser]);
-
       const token = client.generateUserToken({ user_id: userId });
 
       res.json({ token });
     } catch (error) {
       console.error("Error al generar el token:", error);
       res.status(500).json({ error: "Error generando el token" });
+    }
+  });
+
+  router.delete("/remove", async (req, res) => {
+    const userId = req.body.userId;
+
+    try {
+      client.deleteUsers({ user_ids: [userId] });
+      res.json({ status: 200, message: "Usuario eliminado correctamente" });
+    } catch (error) {
+      console.log("Error al eliminar el usuario", error);
+      res.status(500).json({ error: "error al eliminar el usuario" });
     }
   });
 
