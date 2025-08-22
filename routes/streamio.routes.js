@@ -48,5 +48,17 @@ module.exports = (client) => {
     }
   });
 
+  router.put("/restore/:id", async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+      client.restoreUsers({ user_ids: [userId] });
+      res.json({ status: 200, message: "Usuario restaurado correctamente" });
+    } catch (error) {
+      console.log("Error al eliminar el usuario", error);
+      res.status(500).json({ error: "error al restaurar el usuario" });
+    }
+  });
+
   return router;
 };
