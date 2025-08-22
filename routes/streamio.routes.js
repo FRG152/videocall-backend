@@ -36,8 +36,8 @@ module.exports = (client) => {
     }
   });
 
-  router.delete("/remove", async (req, res) => {
-    const userId = req.body.userId;
+  router.delete("/remove/:id", async (req, res) => {
+    const userId = req.params.id;
 
     try {
       client.deleteUsers({ user_ids: [userId] });
