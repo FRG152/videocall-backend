@@ -1,9 +1,10 @@
-const express = require("express");
-const dotenv = require("dotenv");
+const path = require("path");
 const http = require("http");
+const dotenv = require("dotenv");
+const helment = require("helmet");
+const express = require("express");
 const { Server } = require("socket.io");
 const { StreamClient } = require("@stream-io/node-sdk");
-const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -21,6 +22,7 @@ const apiKey = `${process.env.STREAM_API_KEY}`;
 const secret = `${process.env.STREAM_API_SECRET}`;
 client = new StreamClient(apiKey, secret);
 
+app.use(helment());
 app.use(express.json());
 
 app.get("/audio/:filename", (req, res) => {
@@ -36,8 +38,8 @@ app.get("/audio/:filename", (req, res) => {
   res.sendFile(filePath);
 });
 
-const iaRoutes = require("./routes/ia");
-const tokenRoutes = require("./routes/token");
+const iaRoutes = require("./routes/agent.routes");
+const tokenRoutes = require("./routes/streamio.routes");
 const socketHandler = require("./sockets");
 
 app.use("/ia", iaRoutes());
