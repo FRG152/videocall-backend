@@ -36,6 +36,30 @@ module.exports = (client) => {
     }
   });
 
+  router.post("/deactivate/:id", async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+      client.deactivateUser({ user_ids: [userId] });
+      res.json({ status: 200, message: "Usuario desactivado correctamente" });
+    } catch (error) {
+      console.log("Error al eliminar el usuario", error);
+      res.status(500).json({ error: "error al desactivar el usuario" });
+    }
+  });
+
+  router.put("/reactivate/:id", async (req, res) => {
+    const userId = req.params.id;
+
+    try {
+      client.reactivateUsers({ user_ids: [userId] });
+      res.json({ status: 200, message: "Usuario reactivado correctamente" });
+    } catch (error) {
+      console.log("Error al eliminar el usuario", error);
+      res.status(500).json({ error: "error al reactivar el usuario" });
+    }
+  });
+
   router.delete("/remove/:id", async (req, res) => {
     const userId = req.params.id;
 
